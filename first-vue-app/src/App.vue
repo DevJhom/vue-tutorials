@@ -1,25 +1,30 @@
 <template>
   <div class="container">
-    <h1>Hello World</h1>
+    <Header>Hello World</Header>
   </div>
 </template>
 
 <script>
+
+import Header from './components/Header'
+
 export default {
-  name: "App",
-  components: {},
-};
+  name: 'App',
+  components: {
+    Header,
+  }
+}
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .container {
   max-width: 500px;
