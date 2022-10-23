@@ -11,6 +11,12 @@
       "text": "Let's go",
       "day": "1st December",
       "reminder": true
+    },
+    {
+      "text": "Learn Nuxt.js",
+      "day": "23th October",
+      "reminder": true,
+      "id": 3
     }
   ]
 }
