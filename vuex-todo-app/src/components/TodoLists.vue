@@ -10,11 +10,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "TodoLists",
+  methods: {
+    ...mapActions(['fetchTodos']),
+  },
   computed: mapGetters(["allTodos"]),
+  created() {
+    this.fetchTodos();
+  }
 };
 </script>
 
