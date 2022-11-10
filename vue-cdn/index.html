@@ -17,8 +17,13 @@
       <h1>Vue Course Goals</h1>
     </header>
     <section id="user-goal">
-      <h2>My Course Goal</h2>
-      <p>{{courseGoal}}</p>
+      <h2>Vue is awesome!</h2>
+      <p>Read the docs at <a :href="vueLink" target="_blank">Vue</a></p>
+      <p>Random Number = {{ randomNumber }}</p>
+      <button @click="randomize(1000)">Randomize</button>
+      <br><br>
+      <input type="text" @input="setName" placeholder="Type something">
+      <p>{{ name }}</p>
     </section>
   </body>
 </html>
