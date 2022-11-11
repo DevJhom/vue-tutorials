@@ -21,9 +21,13 @@
       <p>Read the docs at <a :href="vueLink" target="_blank">Vue</a></p>
       <p>Random Number = {{ randomNumber }}</p>
       <button @click="randomize(1000)">Randomize</button>
-      <br><br>
-      <input type="text" @input="setName" placeholder="Type something">
-      <p>{{ name }}</p>
+      <br><br><br>
+      <input type="text" v-model="todo" placeholder="Type your todos">
+      <button @click="addTodo">Add</button>
+      <p v-if="todoLists.length === 0">You have no todo list.</p>
+      <div v-else>
+        <p v-for="(todoList, idx) in todoLists" @click="removeTodo(idx)">{{idx + 1}}. {{todoList}}</p>
+      </div>
     </section>
   </body>
 </html>

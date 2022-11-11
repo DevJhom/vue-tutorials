@@ -3,7 +3,8 @@ const app = Vue.createApp({
         return {
             vueLink: "https://vuejs.org/guide/introduction.html",
             randomNumber: 0,
-            name: "Listening to input event"
+            todo: "",
+            todoLists: [],
         };
     },
     methods: {
@@ -11,8 +12,12 @@ const app = Vue.createApp({
             this.randomNumber = Math.round(Math.random() * digit);
             return randomNumber;
         },
-        setName(e){
-            this.name = e.target.value;
+        addTodo(){
+            this.todoLists.push(this.todo);
+            this.todo = "";
+        },
+        removeTodo(idx) {
+            this.todoLists.splice(idx, 1);
         }
     }
 });
