@@ -7,6 +7,7 @@
       {{ detailsAreVisible ? "Hide" : "Show" }} Details
     </button>
     <button @click="toggleFavorite">Toggle Favorite</button>
+    <button @click="$emit('delete', this.id)">Delete</button>
     <ul v-if="detailsAreVisible">
       <li>
         <strong>Phone:</strong>
@@ -27,7 +28,7 @@ export default {
       detailsAreVisible: false,
     };
   },
-  emit: ["toggle-fav"],
+  emit: ["toggle-fav", "delete"],
   // emits: {
   //   "toggle-fav": function(id) {
   //     if(id) {

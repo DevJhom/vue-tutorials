@@ -3,6 +3,7 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <new-friend @add-contact="addContact"></new-friend>
     <ul>
       <friend-contact
         v-for="friend in friends"
@@ -13,12 +14,14 @@
         :email="friend.email"
         :favorite="friend.favorite"
         @toggle-fav="toggleFavorite"
+        @delete="deleteContact"
       ></friend-contact>
     </ul>
   </section>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -44,6 +47,20 @@ export default {
     toggleFavorite(id) {
       const IdFriend = this.friends.find(friend => friend.id === id);
       IdFriend.favorite = !IdFriend.favorite
+    },
+    addContact(name, phone, email) {
+      const newFriendContact = {
+        id: new Date().toISOString(),
+        name: name,
+        phone: phone,
+        email: email,
+        favorite: false
+      }
+
+      this.friends.push(newFriendContact);
+    },
+    deleteContact(id){
+      this.friends = this.friends.filter(friend => friend.id !== id);
     }
   }
 };
@@ -75,7 +92,7 @@ header {
   padding: 0;
   list-style: none;
 }
-#app li {
+#app li, #app form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;
