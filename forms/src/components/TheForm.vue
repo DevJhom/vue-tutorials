@@ -90,7 +90,7 @@
       </div>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <rating-control v-model="rating"></rating-control>
     </div>
     <div class="form-control">
       <div>
@@ -109,7 +109,7 @@ import RatingControl from './RatingControl.vue';
 
 export default {
   components: {
-    RatingControl
+    RatingControl,
   },
   data() {
     return {
@@ -119,6 +119,7 @@ export default {
       interest: [],
       how: [],
       confirm: false,
+      rating: null,
       nameIsValid: 'pending',
     };
   },
@@ -128,6 +129,8 @@ export default {
       this.userAge = null;
       (this.referrer = 'google'), (this.interest = []), (this.how = []);
       this.confirm = false;
+      console.log(this.rating);
+      this.rating = null;
     },
     validateEnteredName() {
       if (this.userName === '') {
