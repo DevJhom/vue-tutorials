@@ -7,16 +7,18 @@
           >Load Submitted Experiences</base-button
         >
       </div>
-      <ul v-if="!isLoading">
+      <p v-if="isLoading">Loading</p>
+      <p v-else-if="!isLoading && error">{{ error }}</p>
+      <p v-else-if="!isLoading && (!results || results.length === 0)">
+        No survey results found!
+      </p>
+      <ul v-else>
         <survey-result
           v-for="result in results"
           :key="result.id"
           :name="result.name"
           :rating="result.rating"
         ></survey-result>
-      </ul>
-      <ul v-else>
-        Loading
       </ul>
     </base-card>
   </section>
@@ -34,11 +36,13 @@ export default {
     return {
       results: [],
       isLoading: false,
+      error: null,
     };
   },
   methods: {
     loadExperiences() {
       this.isLoading = true;
+      this.error = null;
       fetch(
         'https://dummy-database-71242-default-rtdb.asia-southeast1.firebasedatabase.app/surveys.json'
       )
@@ -58,6 +62,11 @@ export default {
             });
           }
           this.results = results;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.isLoading = false;
+          this.error = 'Fail to load data! Please try again later.';
         });
     },
   },

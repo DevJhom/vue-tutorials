@@ -41,6 +41,7 @@
         <p v-if="invalidInput">
           One or more input fields are invalid. Please check your provided data.
         </p>
+        <p v-if="error">{{ error }}</p>
         <div>
           <base-button>Submit</base-button>
         </div>
@@ -56,6 +57,7 @@ export default {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
+      error: null,
     };
   },
   // emits: ['survey-submit'],
@@ -72,6 +74,7 @@ export default {
       //   rating: this.chosenRating,
       // });
 
+      this.error = null;
       fetch(
         'https://dummy-database-71242-default-rtdb.asia-southeast1.firebasedatabase.app/surveys.json',
         {
@@ -84,7 +87,17 @@ export default {
             'Content-Type': 'application/json',
           },
         }
-      );
+      )
+        .then((res) => {
+          if (res.ok) {
+            //...
+          } else {
+            throw new Error('Could not save data!');
+          }
+        })
+        .catch((error) => {
+          this.error = error.message;
+        });
 
       this.enteredName = '';
       this.chosenRating = null;
