@@ -11,25 +11,29 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/teams'
+      redirect: '/teams',
     },
     {
       path: '/teams',
+      name: 'teams',
       component: TeamsList,
+      children: [
+        {
+          path: ':teamId',
+          name: 'team-members',
+          component: TeamMembers,
+          props: true,
+        },
+      ],
     },
     {
       path: '/users',
       component: UsersList,
     },
     {
-      path: '/teams/:teamId',
-      component: TeamMembers,
-      props: true,
+      path: '/:notFound(.*)',
+      redirect: '/',
     },
-    {
-     path: '/:notFound(.*)',
-     redirect: '/'
-    }
   ],
   linkActiveClass: 'active',
 });
