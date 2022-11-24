@@ -17,6 +17,11 @@ export default {
         params: { teamId: this.id },
         query: { sort: 'asc' },
       };
+      // this.$router.push({
+      //   name: 'News',
+      //   params: { newsId: 'news1' },
+      //   query: { sort: 'asc' },
+      // });
     },
   },
 };
